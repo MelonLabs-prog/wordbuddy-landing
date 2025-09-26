@@ -823,13 +823,13 @@
             }
         });
         
-        // Multiple sliders functionality
+        // Multiple sliders functionality - Manual only
         const sliders = {
-            vocab: { index: 1, auto: true },
-            sentence: { index: 1, auto: true },
-            feedback: { index: 1, auto: true },
-            general: { index: 1, auto: true },
-            cards: { index: 1, auto: true }
+            vocab: { index: 1 },
+            sentence: { index: 1 },
+            feedback: { index: 1 },
+            general: { index: 1 },
+            cards: { index: 1 }
         };
         
         function changeSlide(sliderId, n) {
@@ -860,26 +860,6 @@
                 dots[sliders[sliderId].index - 1].classList.add('active');
             }
         }
-        
-        // Auto-advance sliders
-        Object.keys(sliders).forEach(sliderId => {
-            setInterval(() => {
-                if (sliders[sliderId].auto) {
-                    changeSlide(sliderId, 1);
-                }
-            }, 7000 + Math.random() * 1000); // Slightly different timing for each
-        });
-        
-        // Pause auto-advance on hover
-        document.querySelectorAll('.slider-container').forEach(container => {
-            const sliderId = container.querySelector('[data-slider]').dataset.slider;
-            container.addEventListener('mouseenter', () => {
-                sliders[sliderId].auto = false;
-            });
-            container.addEventListener('mouseleave', () => {
-                sliders[sliderId].auto = true;
-            });
-        });
         
         // Initialize Supabase
         const SUPABASE_URL = 'https://noqaxazhcwffuspcsstk.supabase.co';

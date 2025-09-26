@@ -178,6 +178,7 @@
             height: 100%;
             object-fit: cover;
             border-radius: 12px;
+            cursor: zoom-in;
         }
         
         .screenshot-card p {
@@ -360,6 +361,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            cursor: zoom-in;
         }
         
         .slider-dots {
@@ -430,7 +432,64 @@
             margin-bottom: 12px;
         }
         
+        /* Lightbox Modal */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s;
+        }
+        
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        
+        .lightbox img {
+            width: 100%;
+            height: auto;
+            max-width: 1200px;
+            border-radius: 12px;
+            cursor: zoom-out;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10000;
+        }
+        
+        .lightbox-close:hover {
+            color: #7f6fea;
+        }
+        
         /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -468,6 +527,14 @@
     </style>
 </head>
 <body>
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+        <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="Enlarged view">
+        </div>
+    </div>
+    
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
@@ -656,6 +723,41 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
     <script>
+        // Lightbox functionality
+        function openLightbox(imgSrc) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = imgSrc;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+        
+        function closeLightbox(event) {
+            if (event.target.id === 'lightbox' || event.target.className === 'lightbox-close') {
+                document.getElementById('lightbox').classList.remove('active');
+                document.body.style.overflow = 'auto'; // Re-enable scrolling
+            }
+        }
+        
+        // Add click handlers to all screenshots after page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click handler to all slide images
+            const slideImages = document.querySelectorAll('.slide img, .screenshot-placeholder img');
+            slideImages.forEach(img => {
+                img.addEventListener('click', function() {
+                    openLightbox(this.src);
+                });
+            });
+        });
+        
+        // ESC key to close lightbox
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.getElementById('lightbox').classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
         // Multiple sliders functionality
         const sliders = {
             vocab: { index: 1, auto: true },

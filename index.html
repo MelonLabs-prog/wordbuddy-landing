@@ -96,43 +96,31 @@
         /* Compact CTA Section (Email + Discord) */
         .cta-section {
             background: linear-gradient(to bottom, #ffffff 0%, #fafafa 100%);
-            padding: 40px 0;
+            padding: 50px 0;
             border-top: 1px solid rgba(127, 111, 234, 0.1);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
         }
         
-        .cta-block {
-            max-width: 500px;
+        .cta-wrapper {
+            max-width: 450px;
             margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            border: 1px solid #e5e5e5;
-            padding: 30px;
             text-align: center;
-            transition: all 0.3s ease;
         }
         
-        .cta-block:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(127, 111, 234, 0.1);
-            border-color: #a99ef0;
-        }
-        
-        .cta-block h3 {
-            font-size: 1.3em;
+        .cta-wrapper h3 {
+            font-size: 1.4em;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             color: #333;
         }
         
-        .cta-block > p {
-            font-size: 0.9em;
+        .cta-wrapper > p {
+            font-size: 0.95em;
             color: #666;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
         
         .cta-item {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         
         .cta-item:last-child {
@@ -140,10 +128,10 @@
         }
         
         .cta-item-title {
-            font-size: 0.85em;
+            font-size: 0.9em;
             font-weight: 500;
             color: #555;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -152,16 +140,16 @@
         
         .email-form {
             display: flex;
-            gap: 8px;
+            gap: 10px;
             margin-bottom: 15px;
         }
         
         .email-form input {
             flex: 1;
-            padding: 10px 14px;
-            font-size: 13px;
+            padding: 11px 16px;
+            font-size: 14px;
             border: 2px solid #e5e5e5;
-            border-radius: 8px;
+            border-radius: 10px;
             transition: all 0.3s;
             background: white;
         }
@@ -173,21 +161,21 @@
         }
         
         .cta-btn {
-            padding: 10px 20px;
-            font-size: 13px;
+            padding: 11px 24px;
+            font-size: 14px;
             font-weight: 600;
             background: linear-gradient(135deg, #7f6fea 0%, #6bb6d6 100%);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s;
             white-space: nowrap;
         }
         
         .cta-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(127, 111, 234, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(127, 111, 234, 0.25);
         }
         
         .cta-btn:disabled {
@@ -200,26 +188,26 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            padding: 10px 20px;
+            padding: 11px 24px;
             background: linear-gradient(135deg, #7f6fea 0%, #6bb6d6 100%);
             color: white;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-weight: 600;
             transition: all 0.3s;
-            font-size: 13px;
+            font-size: 14px;
             width: 100%;
         }
         
         .discord-cta-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(127, 111, 234, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(127, 111, 234, 0.25);
         }
         
         .divider {
             display: flex;
             align-items: center;
-            margin: 20px 0;
+            margin: 25px 0;
             color: #999;
             font-size: 0.85em;
         }
@@ -234,6 +222,7 @@
         
         .divider span {
             padding: 0 15px;
+            font-style: italic;
         }
         
         /* Screenshots Section */
@@ -555,8 +544,8 @@
                 padding: 0 20px;
             }
             
-            .cta-block {
-                margin: 0 20px;
+            .cta-wrapper {
+                padding: 0 20px;
             }
             
             .logo-container img {
@@ -603,10 +592,10 @@
         </div>
     </section>
 
-    <!-- Compact CTA Section (Email + Discord in one block) -->
+    <!-- Compact CTA Section (Email + Discord - No border) -->
     <section class="cta-section">
         <div class="container">
-            <div class="cta-block">
+            <div class="cta-wrapper">
                 <h3>🎯 Start Your Journey</h3>
                 <p>Join thousands of language learners worldwide!</p>
                 
@@ -771,7 +760,7 @@
                 <h2>🎯 Don't Miss Out!</h2>
                 <p>Join thousands of language learners who are transforming their language skills with WordBuddy.AI</p>
                 
-                <div class="cta-block" style="margin: 40px auto 0;">
+                <div class="cta-wrapper" style="margin-top: 40px;">
                     <h3>✨ Ready to Start?</h3>
                     <p>Limited spots available for beta testers!</p>
                     

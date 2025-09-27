@@ -99,6 +99,32 @@
             margin-right: auto;
         }
         
+        /* Roadmap Button */
+        .roadmap-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: white;
+            border: 2px solid #7f6fea;
+            color: #7f6fea;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s;
+            margin-top: 25px;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+        
+        .roadmap-btn:hover {
+            background: linear-gradient(135deg, #7f6fea 0%, #6bb6d6 100%);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(127, 111, 234, 0.25);
+            border-color: transparent;
+        }
+        
         /* Compact CTA Section (Email + Discord) */
         .cta-section {
             background: linear-gradient(to bottom, #ffffff 0%, #fafafa 100%);
@@ -583,6 +609,7 @@
                 </div>
                 <h1>Your Personal Language Tutor</h1>
                 <p class="tagline">Explanations that make sense.</p>
+                <a href="https://wordbuddy.userjot.com" class="roadmap-btn" target="_blank">📍 See Our Roadmap</a>
             </div>
         </div>
     </section>
@@ -745,6 +772,11 @@
                     <p>Build your personalized vocabulary deck and review saved words with smart flashcards. Track your progress and focus on the words that matter most to your learning journey.</p>
                 </div>
             </div>
+            
+            <!-- Roadmap Button -->
+            <div style="text-align: center; margin-top: 60px;">
+                <a href="https://wordbuddy.userjot.com" class="roadmap-btn" target="_blank">📍 View Product Roadmap</a>
+            </div>
         </div>
     </section>
 
@@ -788,7 +820,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 WordBuddy.AI. All rights reserved. Own Every Word.</p>
+            <p>&copy; 2024 WordBuddy.AI. All rights reserved. Own Every Word.</p>
         </div>
     </footer>
 

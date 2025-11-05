@@ -618,28 +618,30 @@
 
             // Show loading state
             const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Joining...';
+            submitBtn.textContent = 'Sending magic link...';
             submitBtn.disabled = true;
 
             try {
-                // Insert email into Supabase
-                const { data, error } = await supabaseClient
-                    .from('waitlist')
-                    .insert([{ email: email }]);
-
-                if (error) {
-                    if (error.code === '23505') {
-                        alert('You are already on the waitlist!');
-                    } else {
-                        throw error;
-                    }
-                } else {
-                    alert('Welcome to the WordBuddy.AI waitlist! We will keep you updated.');
-                    // Store email in localStorage for vocab analyzer access
-                    localStorage.setItem('wordbuddy_waitlist_email', email);
+                // Add to waitlist first
+                try {
+                    await supabaseClient.from('waitlist').insert([{ email: email }]);
+                } catch (waitlistError) {
+                    // Ignore if already in waitlist
+                    console.log('Waitlist:', waitlistError);
                 }
 
-                // Clear the form
+                // Send magic link for authentication
+                const { error: authError } = await supabaseClient.auth.signInWithOtp({
+                    email: email,
+                    options: {
+                        emailRedirectTo: window.location.origin
+                    }
+                });
+
+                if (authError) throw authError;
+
+                // Success - show message
+                alert('✅ Magic link sent! Check your email and click the link to get access to free tools.');
                 emailInput.value = '';
 
             } catch (error) {

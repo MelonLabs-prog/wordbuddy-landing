@@ -230,6 +230,47 @@
             width: 90%;
             text-align: center;
             animation: slideUp 0.3s ease;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: #999;
+            cursor: pointer;
+            padding: 5px 10px;
+            line-height: 1;
+            transition: color 0.3s;
+        }
+
+        .close-btn:hover {
+            color: #333;
+        }
+
+        .success-content {
+            display: none;
+        }
+
+        .success-content.show {
+            display: block;
+        }
+
+        .form-content.hide {
+            display: none;
+        }
+
+        .success-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .user-email {
+            color: #7f6fea;
+            font-weight: 600;
         }
 
         @keyframes slideUp {
@@ -443,12 +484,23 @@
     <!-- Sign-up Wall -->
     <div class="signup-wall" id="signupWall">
         <div class="signup-modal">
-            <h2>Get Instant Access</h2>
-            <p>Enter your email to receive a magic link and unlock exclusive podcast content</p>
-            <form class="email-form" id="signupForm">
-                <input type="email" id="emailInput" placeholder="Enter your email" required>
-                <button type="submit" class="signup-btn">Send Magic Link</button>
-            </form>
+            <button class="close-btn" onclick="closeSignupWall()">&times;</button>
+
+            <div class="form-content" id="formContent">
+                <h2>Get Instant Access</h2>
+                <p>Enter your email to receive a magic link and unlock exclusive podcast content</p>
+                <form class="email-form" id="signupForm">
+                    <input type="email" id="emailInput" placeholder="Enter your email" required>
+                    <button type="submit" class="signup-btn">Send Magic Link</button>
+                </form>
+            </div>
+
+            <div class="success-content" id="successContent">
+                <div class="success-icon">✅</div>
+                <h2>Magic Link Sent!</h2>
+                <p>Check your email and click the link to get access.</p>
+                <p style="margin-top: 20px;">We sent a magic link to:<br><span class="user-email" id="userEmail"></span></p>
+            </div>
         </div>
     </div>
 
@@ -541,11 +593,10 @@
 
                 if (authError) throw authError;
 
-                // Success - show message
-                alert('Check your email! We sent you a magic link to sign in. Click the link to get instant access.');
-                emailInput.value = '';
-                submitBtn.textContent = 'Check Your Email';
-                submitBtn.disabled = true;
+                // Success - show success content
+                document.getElementById('formContent').classList.add('hide');
+                document.getElementById('successContent').classList.add('show');
+                document.getElementById('userEmail').textContent = email;
 
             } catch (error) {
                 console.error('Error:', error);
@@ -554,6 +605,19 @@
                 submitBtn.disabled = false;
             }
         });
+
+        // Close signup wall
+        function closeSignupWall() {
+            document.getElementById('signupWall').classList.remove('active');
+            // Reset form for next time
+            setTimeout(() => {
+                document.getElementById('formContent').classList.remove('hide');
+                document.getElementById('successContent').classList.remove('show');
+                document.getElementById('emailInput').value = '';
+                document.querySelector('.signup-btn').textContent = 'Send Magic Link';
+                document.querySelector('.signup-btn').disabled = false;
+            }, 300);
+        }
 
         // Check authentication status and update nav
         async function updateNavAuth() {

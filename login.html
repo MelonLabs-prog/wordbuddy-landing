@@ -135,6 +135,20 @@
             display: block;
         }
 
+        .success-message {
+            display: none;
+            background: #efe;
+            color: #3a3;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
         .divider {
             text-align: center;
             margin: 30px 0;
@@ -208,9 +222,10 @@
         </div>
 
         <h1>Welcome Back</h1>
-        <p class="subtitle">Login to access free tools and features</p>
+        <p class="subtitle">Enter your email to receive a magic link and sign in</p>
 
         <div class="error-message" id="errorMessage"></div>
+        <div class="success-message" id="successMessage"></div>
 
         <form id="loginForm">
             <div class="form-group">
@@ -218,12 +233,7 @@
                 <input type="email" id="email" required placeholder="your@email.com">
             </div>
 
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" required placeholder="Enter your password">
-            </div>
-
-            <button type="submit" class="login-btn" id="loginBtn">Login</button>
+            <button type="submit" class="login-btn" id="loginBtn">Send Magic Link</button>
         </form>
 
         <div class="divider">
@@ -252,9 +262,9 @@
 
         const loginForm = document.getElementById('loginForm');
         const emailInput = document.getElementById('email');
-        const passwordInput = document.getElementById('password');
         const loginBtn = document.getElementById('loginBtn');
         const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
 
         // Check if already logged in
         async function checkAuth() {
@@ -272,30 +282,37 @@
             e.preventDefault();
 
             const email = emailInput.value;
-            const password = passwordInput.value;
 
             // Show loading state
-            loginBtn.textContent = 'Logging in...';
+            const originalText = loginBtn.textContent;
+            loginBtn.textContent = 'Sending magic link...';
             loginBtn.disabled = true;
             errorMessage.classList.remove('show');
+            successMessage.classList.remove('show');
 
             try {
-                const { data, error } = await supabaseClient.auth.signInWithPassword({
+                // Send magic link for authentication
+                const { error } = await supabaseClient.auth.signInWithOtp({
                     email: email,
-                    password: password
+                    options: {
+                        emailRedirectTo: window.location.origin
+                    }
                 });
 
                 if (error) throw error;
 
-                // Success - redirect to home
-                window.location.href = 'index.html';
+                // Success - show message
+                successMessage.textContent = '✅ Magic link sent! Check your email and click the link to sign in.';
+                successMessage.classList.add('show');
+                emailInput.value = '';
+                loginBtn.textContent = 'Check Your Email';
 
             } catch (error) {
                 console.error('Login error:', error);
-                errorMessage.textContent = error.message || 'Login failed. Please check your credentials.';
+                errorMessage.textContent = error.message || 'Failed to send magic link. Please try again.';
                 errorMessage.classList.add('show');
 
-                loginBtn.textContent = 'Login';
+                loginBtn.textContent = originalText;
                 loginBtn.disabled = false;
             }
         });

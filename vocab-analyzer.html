@@ -70,6 +70,56 @@
             color: #7f6fea;
         }
 
+        /* Dropdown Menu */
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown-toggle {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-dropdown:hover .nav-dropdown-toggle {
+            color: #7f6fea;
+        }
+
+        .nav-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 10px;
+            background: white;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            min-width: 180px;
+            z-index: 1000;
+        }
+
+        .nav-dropdown:hover .nav-dropdown-menu {
+            display: block;
+        }
+
+        .nav-dropdown-menu a {
+            display: block;
+            padding: 12px 16px;
+            color: #333;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .nav-dropdown-menu a:hover {
+            background: #f8f7ff;
+            color: #7f6fea;
+        }
+
         /* Main Content */
         .main-content {
             min-height: calc(100vh - 200px);
@@ -245,7 +295,12 @@
                 </div>
                 <div class="nav-links">
                     <a href="index.html">Home</a>
-                    <a href="free-tools.html">Free Tools</a>
+                    <div class="nav-dropdown">
+                        <span class="nav-dropdown-toggle">Free Tools ▾</span>
+                        <div class="nav-dropdown-menu">
+                            <a href="vocab-analyzer.html">Vocab Analyzer</a>
+                        </div>
+                    </div>
                     <a href="blogs.html">Blog</a>
                     <a href="podcasts.html">Podcasts</a>
                     <a href="https://wordbuddy.userjot.com" target="_blank">Roadmap</a>

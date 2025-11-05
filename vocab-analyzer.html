@@ -381,11 +381,11 @@
     <!-- Sign-up Wall -->
     <div class="signup-wall" id="signupWall">
         <div class="signup-modal">
-            <h2>Join the Waitlist</h2>
-            <p>Sign up to access the Vocabulary Analyzer and be first to try WordBuddy.AI</p>
+            <h2>Get Instant Access</h2>
+            <p>Enter your email to receive a magic link and unlock the Vocabulary Analyzer</p>
             <form class="email-form" id="signupForm">
                 <input type="email" id="emailInput" placeholder="Enter your email" required>
-                <button type="submit" class="signup-btn">Get Access</button>
+                <button type="submit" class="signup-btn">Send Magic Link</button>
             </form>
         </div>
     </div>
@@ -425,19 +425,11 @@
 
         // Check authentication status
         async function checkAccess() {
-            // First check if user is authenticated
+            // Check if user is authenticated
             const { data: { user } } = await supabaseClient.auth.getUser();
 
-            if (user) {
-                // User is logged in - grant access
-                return;
-            }
-
-            // Check localStorage for existing email
-            const savedEmail = localStorage.getItem('wordbuddy_waitlist_email');
-
-            if (!savedEmail) {
-                // Show signup wall if not authenticated and no email found
+            if (!user) {
+                // Not authenticated - show signup wall
                 signupWall.classList.add('active');
                 iframeContainer.classList.add('locked');
             }
@@ -454,30 +446,33 @@
 
             // Show loading state
             const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Signing up...';
+            submitBtn.textContent = 'Sending magic link...';
             submitBtn.disabled = true;
 
             try {
-                // Insert email into Supabase
-                const { data, error } = await supabaseClient
-                    .from('waitlist')
-                    .insert([{ email: email }]);
-
-                if (error) {
-                    if (error.code === '23505') {
-                        // Email already exists, but still grant access
-                        localStorage.setItem('wordbuddy_waitlist_email', email);
-                        signupWall.classList.remove('active');
-                        iframeContainer.classList.remove('locked');
-                    } else {
-                        throw error;
-                    }
-                } else {
-                    // Success - store email and grant access
-                    localStorage.setItem('wordbuddy_waitlist_email', email);
-                    signupWall.classList.remove('active');
-                    iframeContainer.classList.remove('locked');
+                // Add to waitlist first
+                try {
+                    await supabaseClient.from('waitlist').insert([{ email: email }]);
+                } catch (waitlistError) {
+                    // Ignore if already in waitlist
+                    console.log('Waitlist:', waitlistError);
                 }
+
+                // Send magic link for authentication
+                const { error: authError } = await supabaseClient.auth.signInWithOtp({
+                    email: email,
+                    options: {
+                        emailRedirectTo: window.location.href
+                    }
+                });
+
+                if (authError) throw authError;
+
+                // Success - show message
+                alert('Check your email! We sent you a magic link to sign in. Click the link to get instant access.');
+                emailInput.value = '';
+                submitBtn.textContent = 'Check Your Email';
+                submitBtn.disabled = true;
 
             } catch (error) {
                 console.error('Error:', error);

@@ -135,29 +135,85 @@
             margin-right: auto;
         }
 
-        .roadmap-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 28px;
-            background: white;
-            border: 2px solid #7f6fea;
-            color: #7f6fea;
-            text-decoration: none;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 15px;
-            transition: all 0.3s;
-            margin-top: 25px;
+        .hero-waitlist {
+            max-width: 400px;
+            margin: 30px auto 0;
             animation: fadeInUp 0.8s ease 0.4s both;
         }
 
-        .roadmap-btn:hover {
+        .hero-waitlist .email-form {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .hero-waitlist .email-form input {
+            flex: 1;
+            padding: 12px 16px;
+            font-size: 14px;
+            border: 2px solid #e5e5e5;
+            border-radius: 10px;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .hero-waitlist .email-form input:focus {
+            outline: none;
+            border-color: #7f6fea;
+            box-shadow: 0 0 0 3px rgba(127, 111, 234, 0.08);
+        }
+
+        .hero-waitlist .cta-btn {
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
             background: linear-gradient(135deg, #7f6fea 0%, #6bb6d6 100%);
             color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .hero-waitlist .cta-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(127, 111, 234, 0.25);
-            border-color: transparent;
+            box-shadow: 0 6px 16px rgba(127, 111, 234, 0.25);
+        }
+
+        .hero-waitlist .cta-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .hero-social-links {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero-social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .hero-social-link svg {
+            width: 20px;
+            height: 20px;
         }
 
         /* Features Section */
@@ -223,127 +279,6 @@
             line-height: 1.6;
         }
 
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(to bottom, #ffffff 0%, #fafafa 100%);
-            padding: 80px 0;
-            border-top: 1px solid rgba(127, 111, 234, 0.1);
-        }
-
-        .cta-wrapper {
-            max-width: 500px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .cta-wrapper h3 {
-            font-size: 2em;
-            font-weight: 700;
-            margin-bottom: 12px;
-            background: linear-gradient(135deg, #7f6fea 0%, #6bb6d6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .cta-wrapper > p {
-            font-size: 1.05em;
-            color: #666;
-            margin-bottom: 35px;
-        }
-
-        .email-form {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
-        }
-
-        .email-form input {
-            flex: 1;
-            padding: 14px 18px;
-            font-size: 15px;
-            border: 2px solid #e5e5e5;
-            border-radius: 10px;
-            transition: all 0.3s;
-            background: white;
-        }
-
-        .email-form input:focus {
-            outline: none;
-            border-color: #7f6fea;
-            box-shadow: 0 0 0 3px rgba(127, 111, 234, 0.08);
-        }
-
-        .cta-btn {
-            padding: 14px 28px;
-            font-size: 15px;
-            font-weight: 600;
-            background: linear-gradient(135deg, #7f6fea 0%, #6bb6d6 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-            white-space: nowrap;
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(127, 111, 234, 0.25);
-        }
-
-        .cta-btn:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
-
-        /* Social Media Section */
-        .social-section {
-            padding: 60px 0;
-            background: white;
-            text-align: center;
-        }
-
-        .social-section h3 {
-            font-size: 1.8em;
-            font-weight: 700;
-            margin-bottom: 30px;
-            background: linear-gradient(135deg, #7f6fea 0%, #6bb6d6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            flex-wrap: wrap;
-        }
-
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #7f6fea 0%, #6bb6d6 100%);
-            border-radius: 50%;
-            text-decoration: none;
-            transition: all 0.3s;
-            color: white;
-        }
-
-        .social-link:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 8px 20px rgba(127, 111, 234, 0.3);
-        }
-
-        .social-link svg {
-            width: 28px;
-            height: 28px;
-            fill: white;
-        }
 
         /* Footer */
         footer {
@@ -393,22 +328,13 @@
                 grid-template-columns: 1fr;
             }
 
-            .email-form {
+            .hero-waitlist .email-form {
                 flex-direction: column;
             }
 
-            .email-form input,
-            .cta-btn {
+            .hero-waitlist .email-form input,
+            .hero-waitlist .cta-btn {
                 width: 100%;
-            }
-
-            .social-links {
-                gap: 20px;
-            }
-
-            .social-link {
-                width: 50px;
-                height: 50px;
             }
         }
     </style>
@@ -426,6 +352,7 @@
                     <a href="vocab-analyzer.html">Vocab Analyzer</a>
                     <a href="blogs.html">Blog</a>
                     <a href="podcasts.html">Podcasts</a>
+                    <a href="https://wordbuddy.userjot.com" target="_blank">Roadmap</a>
                 </div>
             </div>
         </div>
@@ -440,7 +367,54 @@
                 </div>
                 <h1>Learn English Smarter</h1>
                 <p class="tagline">Own every word. Master every skill.</p>
-                <a href="https://wordbuddy.userjot.com" class="roadmap-btn" target="_blank">See Our Roadmap</a>
+
+                <div class="hero-waitlist">
+                    <form class="email-form waitlistForm">
+                        <input type="email" placeholder="Enter your email" required class="emailInput">
+                        <button type="submit" class="cta-btn">Join Waitlist</button>
+                    </form>
+
+                    <div class="hero-social-links">
+                        <a href="https://discord.gg/uThntK6DbK" class="hero-social-link" target="_blank" aria-label="Discord">
+                            <svg viewBox="0 0 24 24">
+                                <path fill="#5865F2" d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+                            </svg>
+                        </a>
+
+                        <a href="https://twitter.com/wordbuddyai" class="hero-social-link" target="_blank" aria-label="X (Twitter)">
+                            <svg viewBox="0 0 24 24">
+                                <path fill="#000000" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+
+                        <a href="https://instagram.com/wordbuddyai" class="hero-social-link" target="_blank" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24">
+                                <defs>
+                                    <linearGradient id="instagram-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                                        <stop offset="0%" style="stop-color:#FED373;stop-opacity:1" />
+                                        <stop offset="15%" style="stop-color:#F15245;stop-opacity:1" />
+                                        <stop offset="30%" style="stop-color:#D92E7F;stop-opacity:1" />
+                                        <stop offset="50%" style="stop-color:#9B36B7;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#515ECF;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                <path fill="url(#instagram-gradient)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+
+                        <a href="https://tiktok.com/@wordbuddyai" class="hero-social-link" target="_blank" aria-label="TikTok">
+                            <svg viewBox="0 0 24 24">
+                                <path fill="#000000" d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                            </svg>
+                        </a>
+
+                        <a href="https://reddit.com/r/wordbuddyai" class="hero-social-link" target="_blank" aria-label="Reddit">
+                            <svg viewBox="0 0 24 24">
+                                <path fill="#FF4500" d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -491,58 +465,6 @@
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-wrapper">
-                <h3>Join the Waitlist</h3>
-                <p>Be among the first to experience AI-powered language learning</p>
-
-                <form class="email-form waitlistForm">
-                    <input type="email" placeholder="Enter your email" required class="emailInput">
-                    <button type="submit" class="cta-btn">Join Waitlist</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Social Media Section -->
-    <section class="social-section">
-        <div class="container">
-            <h3>Connect With Us</h3>
-            <div class="social-links">
-                <a href="https://discord.gg/uThntK6DbK" class="social-link" target="_blank" aria-label="Discord">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
-                    </svg>
-                </a>
-
-                <a href="https://twitter.com/wordbuddyai" class="social-link" target="_blank" aria-label="X (Twitter)">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                    </svg>
-                </a>
-
-                <a href="https://instagram.com/wordbuddyai" class="social-link" target="_blank" aria-label="Instagram">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                    </svg>
-                </a>
-
-                <a href="https://tiktok.com/@wordbuddyai" class="social-link" target="_blank" aria-label="TikTok">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-                    </svg>
-                </a>
-
-                <a href="https://reddit.com/r/wordbuddyai" class="social-link" target="_blank" aria-label="Reddit">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
-                    </svg>
-                </a>
-            </div>
-        </div>
-    </section>
 
     <!-- Footer -->
     <footer>

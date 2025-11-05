@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="WordBuddy.AI Blog - Tips, insights, and resources for English language learning">
+    <title>Blog - WordBuddy.AI</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fafafa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo img {
+            height: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #7f6fea;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f8f7ff 0%, #e8f9fd 100%);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #7f6fea 0%, #6bb6d6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            color: #666;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 80px 0;
+            min-height: 50vh;
+        }
+
+        .coming-soon {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .coming-soon-icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+        }
+
+        .coming-soon h2 {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .coming-soon p {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 14px 28px;
+            font-size: 15px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #7f6fea 0%, #6bb6d6 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(127, 111, 234, 0.25);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 15px;
+                font-size: 14px;
+            }
+
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .coming-soon-icon {
+                font-size: 4em;
+            }
+
+            .coming-soon h2 {
+                font-size: 1.6em;
+            }
+
+            .coming-soon p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <img src="wordbuddy-logo.png" alt="WordBuddy.AI">
+                </div>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="vocab-analyzer.html">Vocab Analyzer</a>
+                    <a href="blogs.html">Blog</a>
+                    <a href="podcasts.html">Podcasts</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>WordBuddy.AI Blog</h1>
+            <p>Tips, insights, and resources for English language learning</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="main-content">
+        <div class="container">
+            <div class="coming-soon">
+                <div class="coming-soon-icon">✍️</div>
+                <h2>Coming Soon</h2>
+                <p>We're working on creating valuable content to help you master English. Our blog will feature learning tips, vocabulary guides, grammar explanations, and success stories from learners around the world.</p>
+                <a href="index.html" class="cta-btn">Back to Home</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 WordBuddy.AI. All rights reserved. Own Every Word.</p>
+        </div>
+    </footer>
+</body>
+</html>

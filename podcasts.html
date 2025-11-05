@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="WordBuddy.AI Podcasts - Learn English through engaging audio content">
+    <title>Podcasts - WordBuddy.AI</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fafafa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo img {
+            height: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #7f6fea;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f8f7ff 0%, #e8f9fd 100%);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #7f6fea 0%, #6bb6d6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            color: #666;
+        }
+
+        /* Sign-up Wall */
+        .signup-wall {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .signup-wall.active {
+            display: flex;
+        }
+
+        .signup-modal {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .signup-modal h2 {
+            font-size: 2em;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #7f6fea 0%, #6bb6d6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .signup-modal p {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .email-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .email-form input {
+            flex: 1;
+            padding: 14px 18px;
+            font-size: 15px;
+            border: 2px solid #e5e5e5;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .email-form input:focus {
+            outline: none;
+            border-color: #7f6fea;
+            box-shadow: 0 0 0 3px rgba(127, 111, 234, 0.08);
+        }
+
+        .signup-btn {
+            padding: 14px 28px;
+            font-size: 15px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #7f6fea 0%, #6bb6d6 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .signup-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(127, 111, 234, 0.25);
+        }
+
+        .signup-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 80px 0;
+            min-height: 50vh;
+        }
+
+        .main-content.locked {
+            filter: blur(8px);
+            pointer-events: none;
+        }
+
+        .coming-soon {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .coming-soon-icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+        }
+
+        .coming-soon h2 {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .coming-soon p {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 14px 28px;
+            font-size: 15px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #7f6fea 0%, #6bb6d6 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(127, 111, 234, 0.25);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 15px;
+                font-size: 14px;
+            }
+
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .signup-modal {
+                padding: 30px 20px;
+            }
+
+            .email-form {
+                flex-direction: column;
+            }
+
+            .email-form input,
+            .signup-btn {
+                width: 100%;
+            }
+
+            .coming-soon-icon {
+                font-size: 4em;
+            }
+
+            .coming-soon h2 {
+                font-size: 1.6em;
+            }
+
+            .coming-soon p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <img src="wordbuddy-logo.png" alt="WordBuddy.AI">
+                </div>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="vocab-analyzer.html">Vocab Analyzer</a>
+                    <a href="blogs.html">Blog</a>
+                    <a href="podcasts.html">Podcasts</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sign-up Wall -->
+    <div class="signup-wall" id="signupWall">
+        <div class="signup-modal">
+            <h2>Join the Waitlist</h2>
+            <p>Sign up to access exclusive podcast content and be first to try WordBuddy.AI</p>
+            <form class="email-form" id="signupForm">
+                <input type="email" id="emailInput" placeholder="Enter your email" required>
+                <button type="submit" class="signup-btn">Get Access</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>WordBuddy.AI Podcasts</h1>
+            <p>Learn English through engaging audio content</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="main-content" id="mainContent">
+        <div class="container">
+            <div class="coming-soon">
+                <div class="coming-soon-icon">🎙️</div>
+                <h2>Coming Soon</h2>
+                <p>We're creating a series of engaging podcasts to help you improve your English listening skills, learn vocabulary in context, and stay motivated on your language learning journey. Subscribe to our waitlist to be notified when we launch.</p>
+                <a href="index.html" class="cta-btn">Back to Home</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 WordBuddy.AI. All rights reserved. Own Every Word.</p>
+        </div>
+    </footer>
+
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+        // Initialize Supabase
+        const SUPABASE_URL = 'https://noqaxazhcwffuspcsstk.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5vcWF4YXpoY3dmZnVzcGNzc3RrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYxODY5NjEsImV4cCI6MjA3MTc2Mjk2MX0.hZpA9grb0k3f_E8X2BZ-EBviRa9s26snjU8UQtfGkZ0';
+
+        const { createClient } = supabase;
+        const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // Check if user has already signed up
+        const signupWall = document.getElementById('signupWall');
+        const mainContent = document.getElementById('mainContent');
+        const signupForm = document.getElementById('signupForm');
+        const emailInput = document.getElementById('emailInput');
+
+        // Check localStorage for existing email
+        const savedEmail = localStorage.getItem('wordbuddy_waitlist_email');
+
+        if (!savedEmail) {
+            // Show signup wall if no email found
+            signupWall.classList.add('active');
+            mainContent.classList.add('locked');
+        }
+
+        // Handle form submission
+        signupForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const submitBtn = this.querySelector('.signup-btn');
+            const email = emailInput.value;
+
+            // Show loading state
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Signing up...';
+            submitBtn.disabled = true;
+
+            try {
+                // Insert email into Supabase
+                const { data, error } = await supabaseClient
+                    .from('waitlist')
+                    .insert([{ email: email }]);
+
+                if (error) {
+                    if (error.code === '23505') {
+                        // Email already exists, but still grant access
+                        localStorage.setItem('wordbuddy_waitlist_email', email);
+                        signupWall.classList.remove('active');
+                        mainContent.classList.remove('locked');
+                    } else {
+                        throw error;
+                    }
+                } else {
+                    // Success - store email and grant access
+                    localStorage.setItem('wordbuddy_waitlist_email', email);
+                    signupWall.classList.remove('active');
+                    mainContent.classList.remove('locked');
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Something went wrong. Please try again.');
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

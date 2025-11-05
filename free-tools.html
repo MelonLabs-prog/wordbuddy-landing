@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="WordBuddy.AI Blog - Tips, insights, and resources for English language learning">
-    <title>Blog - WordBuddy.AI</title>
+    <meta name="description" content="WordBuddy.AI Free Tools - Test your English skills with our free language learning tools">
+    <title>Free Tools - WordBuddy.AI</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png">
@@ -98,46 +98,62 @@
             min-height: 50vh;
         }
 
-        .coming-soon {
-            text-align: center;
-            max-width: 600px;
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
-        .coming-soon-icon {
-            font-size: 5em;
+        .tool-card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            border: 2px solid #e5e5e5;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(127, 111, 234, 0.15);
+            border-color: #7f6fea;
+        }
+
+        .tool-icon {
+            font-size: 3em;
             margin-bottom: 20px;
         }
 
-        .coming-soon h2 {
-            font-size: 2em;
-            font-weight: 700;
-            margin-bottom: 15px;
+        .tool-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 12px;
             color: #333;
         }
 
-        .coming-soon p {
-            font-size: 1.1em;
+        .tool-card p {
             color: #666;
-            margin-bottom: 30px;
-            line-height: 1.8;
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
 
-        .cta-btn {
+        .tool-badge {
             display: inline-block;
-            padding: 14px 28px;
-            font-size: 15px;
-            font-weight: 600;
+            padding: 6px 12px;
             background: linear-gradient(135deg, #7f6fea 0%, #6bb6d6 100%);
             color: white;
-            text-decoration: none;
-            border-radius: 10px;
-            transition: all 0.3s;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
         }
 
-        .cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(127, 111, 234, 0.25);
+        .coming-soon-badge {
+            background: #e5e5e5;
+            color: #666;
         }
 
         /* Footer */
@@ -167,16 +183,12 @@
                 font-size: 1.1em;
             }
 
-            .coming-soon-icon {
-                font-size: 4em;
+            .tools-grid {
+                grid-template-columns: 1fr;
             }
 
-            .coming-soon h2 {
-                font-size: 1.6em;
-            }
-
-            .coming-soon p {
-                font-size: 1em;
+            .tool-card {
+                padding: 30px;
             }
         }
     </style>
@@ -203,19 +215,21 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>WordBuddy.AI Blog</h1>
-            <p>Tips, insights, and resources for English language learning</p>
+            <h1>Free Tools</h1>
+            <p>Test your English skills with our free language learning tools</p>
         </div>
     </section>
 
     <!-- Main Content -->
     <section class="main-content">
         <div class="container">
-            <div class="coming-soon">
-                <div class="coming-soon-icon">✍️</div>
-                <h2>Coming Soon</h2>
-                <p>We're working on creating valuable content to help you master English. Our blog will feature learning tips, vocabulary guides, grammar explanations, and success stories from learners around the world.</p>
-                <a href="index.html" class="cta-btn">Back to Home</a>
+            <div class="tools-grid">
+                <a href="vocab-analyzer.html" class="tool-card">
+                    <div class="tool-icon">📊</div>
+                    <h3>Vocabulary Analyzer</h3>
+                    <p>Discover your current English vocabulary level with our comprehensive assessment tool. Get instant results and personalized recommendations.</p>
+                    <span class="tool-badge">Available Now</span>
+                </a>
             </div>
         </div>
     </section>

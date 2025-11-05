@@ -47,6 +47,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 30px;
+        }
+
+        .nav-center {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex: 1;
+            justify-content: center;
         }
 
         .nav-logo img {
@@ -123,6 +132,54 @@
         .nav-dropdown-menu a:hover {
             background: #f8f7ff;
             color: #7f6fea;
+        }
+
+        /* Auth Button */
+        .nav-auth {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .auth-btn {
+            padding: 8px 20px;
+            background: linear-gradient(135deg, #7f6fea 0%, #6bb6d6 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(127, 111, 234, 0.3);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logout-btn {
+            padding: 8px 16px;
+            background: #f5f5f5;
+            color: #333;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background: #e5e5e5;
         }
 
         /* Hero Section */
@@ -360,19 +417,24 @@
                 <div class="nav-logo">
                     <img src="wordbuddy-logo.png" alt="WordBuddy.AI">
                 </div>
-                <div class="nav-links">
-                    <a href="index.html">Home</a>
-                    <div class="nav-dropdown">
-                        <span class="nav-dropdown-toggle">Free Tools ▾</span>
-                        <div class="nav-dropdown-menu">
-                            <div class="nav-dropdown-menu-inner">
-                                <a href="vocab-analyzer.html">Vocab Analyzer</a>
+                <div class="nav-center">
+                    <div class="nav-links">
+                        <a href="index.html">Home</a>
+                        <div class="nav-dropdown">
+                            <span class="nav-dropdown-toggle">Free Tools ▾</span>
+                            <div class="nav-dropdown-menu">
+                                <div class="nav-dropdown-menu-inner">
+                                    <a href="vocab-analyzer.html">Vocab Analyzer</a>
+                                </div>
                             </div>
                         </div>
+                        <a href="blogs.html">Blog</a>
+                        <a href="podcasts.html">Podcasts</a>
+                        <a href="https://wordbuddy.userjot.com" target="_blank">Roadmap</a>
                     </div>
-                    <a href="blogs.html">Blog</a>
-                    <a href="podcasts.html">Podcasts</a>
-                    <a href="https://wordbuddy.userjot.com" target="_blank">Roadmap</a>
+                </div>
+                <div class="nav-auth" id="navAuth">
+                    <a href="login.html" class="auth-btn" id="loginBtn">Login</a>
                 </div>
             </div>
         </div>
@@ -434,14 +496,27 @@
         const signupForm = document.getElementById('signupForm');
         const emailInput = document.getElementById('emailInput');
 
-        // Check localStorage for existing email
-        const savedEmail = localStorage.getItem('wordbuddy_waitlist_email');
+        // Check authentication status
+        async function checkAccess() {
+            // First check if user is authenticated
+            const { data: { user } } = await supabaseClient.auth.getUser();
 
-        if (!savedEmail) {
-            // Show signup wall if no email found
-            signupWall.classList.add('active');
-            mainContent.classList.add('locked');
+            if (user) {
+                // User is logged in - grant access
+                return;
+            }
+
+            // Check localStorage for existing email
+            const savedEmail = localStorage.getItem('wordbuddy_waitlist_email');
+
+            if (!savedEmail) {
+                // Show signup wall if not authenticated and no email found
+                signupWall.classList.add('active');
+                mainContent.classList.add('locked');
+            }
         }
+
+        checkAccess();
 
         // Handle form submission
         signupForm.addEventListener('submit', async function(e) {
@@ -484,6 +559,42 @@
                 submitBtn.disabled = false;
             }
         });
+
+        // Check authentication status and update nav
+        async function updateNavAuth() {
+            const navAuth = document.getElementById('navAuth');
+
+            try {
+                const { data: { user } } = await supabaseClient.auth.getUser();
+
+                if (user) {
+                    // User is logged in - show logout button
+                    const userEmail = user.email.split('@')[0]; // Get part before @
+                    navAuth.innerHTML = `
+                        <div class="user-info">
+                            <span style="color: #666; font-size: 14px;">Hi, ${userEmail}</span>
+                            <button class="logout-btn" onclick="handleLogout()">Logout</button>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Auth check error:', error);
+            }
+        }
+
+        async function handleLogout() {
+            try {
+                await supabaseClient.auth.signOut();
+                localStorage.removeItem('wordbuddy_waitlist_email');
+                window.location.reload();
+            } catch (error) {
+                console.error('Logout error:', error);
+                alert('Error logging out. Please try again.');
+            }
+        }
+
+        // Check auth on page load
+        updateNavAuth();
     </script>
 </body>
 </html>
